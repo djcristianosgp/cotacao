@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 
 
 namespace AppMoedaHoje
@@ -72,7 +72,7 @@ namespace AppMoedaHoje
                     if (item.HighValue > itemLista.High && itemLista.High > 0)
                     {
                         var mensagem = $"🫶🏼> Moeda: {moeda} superou maior preço de hoje que era: {itemLista.High.ToString("C", new CultureInfo("pt-BR"))}" +
-                            $" | O preço é {precohoje.ToString("C", new CultureInfo("pt-BR"))}{Environment.NewLine} ";
+                            $" | O preço é {item.HighValue.ToString("C", new CultureInfo("pt-BR"))}{Environment.NewLine} ";
                         // MessageBox.Show(mensagem);
                          ExibeMensagem(mensagem, moeda);
                         txtRetorno.AppendText(mensagem);
@@ -81,7 +81,7 @@ namespace AppMoedaHoje
                     if (item.LowValue < itemLista.Low && itemLista.Low > 0)
                     {
                         var mensagem = $"🕺🏼> Moeda: {moeda} superou menor preço de hoje que era: {itemLista.Low.ToString("C", new CultureInfo("pt-BR"))}" +
-                            $" | O preço é {precohoje.ToString("C", new CultureInfo("pt-BR"))}{Environment.NewLine} ";
+                            $" | O preço é {item.LowValue.ToString("C", new CultureInfo("pt-BR"))}{Environment.NewLine} ";
                         // MessageBox.Show(mensagem);
                          ExibeMensagem(mensagem, moeda);
                         txtRetorno.AppendText(mensagem);
