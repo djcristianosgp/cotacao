@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -21,7 +22,7 @@ namespace AppMoedaHoje
         public string Ask { get; set; }
         public string Timestamp { get; set; }
         public string Create_Date { get; set; }
-        public decimal HighValue => decimal.Parse(High, System.Globalization.CultureInfo.InvariantCulture);
-        public decimal LowValue => decimal.Parse(Low, System.Globalization.CultureInfo.InvariantCulture);
+        public decimal HighValue => Math.Round(decimal.Parse(High, CultureInfo.InvariantCulture), 2);
+        public decimal LowValue => Math.Round(decimal.Parse(Low, CultureInfo.InvariantCulture), 2);
     }
 }
