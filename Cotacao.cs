@@ -66,9 +66,15 @@ namespace AppMoedaHoje
                 txtRetorno.AppendText($"{String.Format(TextMensagem, moeda, maiorprecohoje.ToString("C", new CultureInfo("pt-BR")),
                     menosprecohoje.ToString("C", new CultureInfo("pt-BR")), precohoje.ToString("C", new CultureInfo("pt-BR")))} {Environment.NewLine}");
                 var itemLista = higt.FirstOrDefault(xax => xax.Code == moeda && xax.CreateDate == dataAtual.ToString("dd/MM/yyyy"));
+                var gb = this.Controls
+                               .OfType<Panel>()
+                               .FirstOrDefault(pn => pn.Name == "pnMoedas")
+                               .Controls.OfType<GroupBox>()
+                               .FirstOrDefault(gb => gb.Name.ToUpper().Contains(moeda));
 
                 if (itemLista != null)
                 {
+                    await AlimentaGroup(gb, itemLista);
                     itemLista.CreateDate = dataPEsquisa;
                     if (item.HighValue > itemLista.High && itemLista.High > 0)
                     {
@@ -105,7 +111,10 @@ namespace AppMoedaHoje
                     };
                     higt.Add(novoItem);
 
+                    await AlimentaGroup(gb, novoItem);
+
                 }
+
                 //if (higt.Any(xax => xax.Code == moeda))
                 //{
 
@@ -115,19 +124,39 @@ namespace AppMoedaHoje
 
         }
 
+        public async Task AlimentaGroup(GroupBox groupBox, HigtPReco higtPReco)
+        {
+            var labelMaior = groupBox.Controls
+                         .OfType<Label>()
+                         .FirstOrDefault(gb => gb.Name.ToLower().Contains("maior"));
+
+            labelMaior.Text = higtPReco.High.ToString("C", new CultureInfo("pt-BR"));
+
+            var labelMenor = groupBox.Controls
+                   .OfType<Label>()
+                   .FirstOrDefault(gb => gb.Name.ToLower().Contains("menor"));
+            labelMenor.Text = higtPReco.Low.ToString("C", new CultureInfo("pt-BR"));
+
+            var labelAtual = groupBox.Controls
+                   .OfType<Label>()
+                   .FirstOrDefault(gb => gb.Name.ToLower().Contains("atual"));
+            labelAtual.Text = higtPReco.Ask.ToString("C", new CultureInfo("pt-BR"));
+        }
+
         private void AlterarPropriedadesControles(Control controlePai)
         {
             foreach (Control controle in controlePai.Controls)
             {
                 // Alterar a cor de fundo (BackColor) se for um controle compatível
-                if (controle is TextBox || controle is ComboBox || controle is Button || 
-                    controle is Panel || controle is GroupBox || controle is RichTextBox || controle is StatusStrip)
+                if (controle is TextBox || controle is ComboBox || controle is Button ||
+                    controle is Panel || controle is GroupBox || controle is RichTextBox
+                    || controle is StatusStrip || controle is Panel || controle is Label)
                 {
                     controle.BackColor = ColorTranslator.FromHtml("#424242");
                 }
 
                 // Alterar a cor do texto (ForeColor) para controles compatíveis
-                if (controle is Label || controle is TextBox || controle is Button || 
+                if (controle is Label || controle is TextBox || controle is Button ||
                     controle is ComboBox || controle is RichTextBox || controle is StatusStrip)
                 {
                     controle.ForeColor = ColorTranslator.FromHtml("#FFFFFF");
