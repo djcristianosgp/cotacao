@@ -6,6 +6,22 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>icons8_wired_network_connection.ico</ApplicationIcon>
+    <Title>Moeda Hoje</Title>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <FileVersion>1.0.0.1</FileVersion>
+    <PackageIcon>icons8_wired_network_connection_32.png</PackageIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="icons8_wired_network_connection.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\construtor_devexpress\Imagens\icons8_wired_network_connection_32.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>

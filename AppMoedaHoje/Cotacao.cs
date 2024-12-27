@@ -202,7 +202,7 @@ namespace AppMoedaHoje
                     if (startIndex != -1)
                     {
                         richTextBox.Select(startIndex, line.Length); // Seleciona a linha inteira.
-                        richTextBox.SelectionColor = Color.DarkGreen; // Define a cor.
+                        richTextBox.SelectionColor = Color.Green; // Define a cor.
                     }
                 }
             }
